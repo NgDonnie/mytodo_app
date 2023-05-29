@@ -23,6 +23,12 @@ class _TodoListState extends State<TodoList> {
 
   }
 
+  void _handleTodoChange(Todo todo) {
+    setState(() {
+      todo.completed = !todo.completed;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +39,8 @@ class _TodoListState extends State<TodoList> {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         children: _todos.map((Todo todo) {
           return TodoItem(
-            todo: todo
+            todo: todo,
+            onTodoChanged: _handleTodoChange,
             );
         }).toList(),
       ),

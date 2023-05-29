@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mytodo_app/models/todo.dart';
 
 class TodoItem extends StatelessWidget {
-  TodoItem({required this.todo}) : super(key: ObjectKey(todo));
+
+  TodoItem(
+    {
+      required this.todo, 
+      required this.onTodoChanged,
+    }) 
+      : super(key: ObjectKey(todo));
 
   final Todo todo;
+  final void Function(Todo todo) onTodoChanged;
 
   TextStyle? _getTextStyle(bool checked) {
     if (!checked) return null;
@@ -15,15 +22,21 @@ class TodoItem extends StatelessWidget {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {},
+      onTap: () {
+        onTodoChanged(todo);
+      },
       leading: Checkbox(
         checkColor: Colors.greenAccent,
         activeColor: Colors.red,
         value: todo.completed,
-        onChanged: (value) {},
+        onChanged: (value) {
+          onTodoChanged(todo);
+        },
       ),
       title: Row(children: <Widget>[
         Expanded(
