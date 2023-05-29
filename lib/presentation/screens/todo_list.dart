@@ -29,6 +29,12 @@ class _TodoListState extends State<TodoList> {
     });
   }
 
+  void _deleteTodo(Todo todo) {
+    setState(() {
+      _todos.removeWhere((element) => element.name == todo.name);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +47,7 @@ class _TodoListState extends State<TodoList> {
           return TodoItem(
             todo: todo,
             onTodoChanged: _handleTodoChange,
+            removeTodo: _deleteTodo,
             );
         }).toList(),
       ),
