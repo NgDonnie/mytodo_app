@@ -82,6 +82,7 @@ class _TodoListState extends State<TodoList> {
               ),
               onPressed: () {
                 Navigator.of(context).pop();
+                _textFieldController.clear();
               },
               child: const Text('Cancel'),
             ),
@@ -94,6 +95,7 @@ class _TodoListState extends State<TodoList> {
               onPressed: () {
                 Navigator.of(context).pop();
                 _addTodoItem(_textFieldController.text);
+                _textFieldController.clear();
               },
               child: const Text('Add'),
             ),
