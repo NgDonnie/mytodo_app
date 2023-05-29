@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:mytodo_app/models/todo.dart';
+import 'package:mytodo_app/models/todo_item.dart';
 
 class TodoList extends StatefulWidget {
   const TodoList({super.key});
@@ -24,6 +26,17 @@ class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('To Do List'),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        children: _todos.map((Todo todo) {
+          return TodoItem(
+            todo: todo
+            );
+        }).toList(),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _displayDialog(),
         tooltip: 'Add a Todo',
@@ -37,7 +50,7 @@ class _TodoListState extends State<TodoList> {
   Future<void> _displayDialog() async {
     return showDialog<void>(
       context: context,
-      T: false,
+      //T: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Add a todo'),
